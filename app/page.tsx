@@ -125,7 +125,7 @@ const companyWebsites = [
     href: "https://fast-printing-frontend-woad.vercel.app/",
     host: "fast-printing-frontend-woad.vercel.app",
     icon: Printer,
-    preview: "bg-gradient-to-br from-teal-700 to-teal-500",
+    preview: "bg-gradient-to-br from-teal-800 to-teal-600",
   },
   {
     name: "Fast Media Agency",
@@ -134,7 +134,7 @@ const companyWebsites = [
     href: "https://fast-media-agency-five.vercel.app/",
     host: "fast-media-agency-five.vercel.app",
     icon: Megaphone,
-    preview: "bg-gradient-to-br from-amber-600 to-amber-500",
+    preview: "bg-gradient-to-br from-amber-700 to-amber-600",
   },
 ];
 
@@ -381,9 +381,19 @@ export default function HomeClient() {
       </section>
 
       {/* OUR COMPANY WEBSITES (showcase, redirects to external sites) */}
-      <section id="companies" className="section relative scroll-mt-16 overflow-hidden border-b border-line bg-gradient-to-b from-teal-50/80 via-white to-amber-50/70 xl:scroll-mt-32">
-        <div className="animate-blob pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-teal-500/10 blur-[110px]" />
-        <div className="animate-blob pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-amber-500/15 blur-[110px]" style={{ animationDelay: "-5s" }} />
+      <section
+        id="companies"
+        className="section relative scroll-mt-16 overflow-hidden border-b border-line bg-gradient-to-b from-teal-50/80 via-white to-amber-50/70 xl:scroll-mt-32"
+      >
+        <div
+          aria-hidden
+          className="animate-blob pointer-events-none absolute -left-24 -top-24 h-56 w-56 rounded-full bg-teal-500/10 blur-3xl motion-reduce:animate-none sm:-left-32 sm:-top-32 sm:h-80 sm:w-80 sm:blur-[110px]"
+        />
+        <div
+          aria-hidden
+          className="animate-blob pointer-events-none absolute -bottom-24 -right-24 h-56 w-56 rounded-full bg-amber-500/15 blur-3xl motion-reduce:animate-none sm:-bottom-32 sm:-right-32 sm:h-80 sm:w-80 sm:blur-[110px]"
+          style={{ animationDelay: "-5s" }}
+        />
 
         <div className="container-x relative">
           <SectionHeading
@@ -392,55 +402,75 @@ export default function HomeClient() {
             text="Explore the websites of our companies to learn about their services and get in touch."
           />
 
-          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:gap-8">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:gap-8">
             {companyWebsites.map((c, i) => {
               const Icon = c.icon;
+              const titleId = `company-title-${i}`;
               return (
-                <Reveal key={c.href} delay={i * 120} className="h-full">
+                <Reveal key={c.href} delay={i * 120} className="h-full min-w-0">
                   <a
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white p-3 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-teal-400 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 sm:p-5"
+                    aria-labelledby={titleId}
+                    className="group relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-line bg-white p-3 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-teal-400 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none sm:rounded-3xl sm:p-5 sm:hover:-translate-y-2"
                   >
                     {/* Browser-window style preview */}
-                    <div className={`relative overflow-hidden rounded-2xl shadow-md ${c.preview}`}>
-                      <div className="flex items-center gap-2 border-b border-white/15 bg-black/20 px-3 py-2.5 sm:px-4">
-                        <span className="flex shrink-0 gap-1.5" aria-hidden="true">
-                          <span className="h-2.5 w-2.5 rounded-full bg-white/40" />
-                          <span className="h-2.5 w-2.5 rounded-full bg-white/40" />
-                          <span className="h-2.5 w-2.5 rounded-full bg-white/40" />
+                    <div className={`relative overflow-hidden rounded-xl shadow-md sm:rounded-2xl ${c.preview}`}>
+                      <div className="flex items-center gap-2 border-b border-white/15 bg-black/25 px-3 py-2 sm:px-4 sm:py-2.5">
+                        <span className="hidden shrink-0 gap-1.5 min-[360px]:flex" aria-hidden="true">
+                          <span className="size-2.5 rounded-full bg-white/40" />
+                          <span className="size-2.5 rounded-full bg-white/40" />
+                          <span className="size-2.5 rounded-full bg-white/40" />
                         </span>
-                        <span className="ml-1 min-w-0 flex-1 truncate rounded-md bg-white/15 px-3 py-1 text-[11px] font-medium text-white/90 sm:ml-2">
+                        <span className="min-w-0 flex-1 truncate rounded-md bg-white/15 px-2.5 py-1 text-xs font-medium text-white sm:px-3">
                           {c.host}
                         </span>
-                        <span className="flex shrink-0 items-center gap-1.5 text-[10px] font-bold text-white">
-                          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
+                        <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-white">
+                          <span aria-hidden className="size-1.5 animate-pulse rounded-full bg-emerald-300 motion-reduce:animate-none" />
                           Live
                         </span>
                       </div>
-                      <div className="relative flex h-40 flex-col items-center justify-center gap-3 sm:h-52">
-                        <div className="animate-blob pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-white/10" />
-                        <div className="animate-float relative rounded-2xl bg-white/15 p-4 backdrop-blur-md">
-                          <Icon size={40} className="text-white transition duration-500 group-hover:scale-110" />
+
+                      <div className="relative flex h-28 flex-col items-center justify-center gap-3 sm:h-44 lg:h-52">
+                        <div
+                          aria-hidden
+                          className="animate-blob pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/10 motion-reduce:animate-none sm:h-36 sm:w-36"
+                        />
+                        <div className="animate-float relative rounded-2xl bg-white/15 p-3 backdrop-blur-md motion-reduce:animate-none sm:p-4">
+                          <Icon
+                            aria-hidden
+                            className="size-8 text-white transition duration-500 group-hover:scale-110 motion-reduce:transform-none sm:size-10"
+                          />
                         </div>
-                        <p className="relative break-words px-4 text-center text-xl font-extrabold text-white sm:text-2xl">{c.name}</p>
+                        <p aria-hidden className="relative hidden break-words px-4 text-center text-2xl font-extrabold text-white sm:block">
+                          {c.name}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="flex flex-1 flex-col justify-between px-1 pb-1 pt-6 sm:px-2">
+                    <div className="flex min-w-0 flex-1 flex-col justify-between px-1 pb-1 pt-5 sm:px-2 sm:pt-6">
                       <div>
-                        <span className="inline-block rounded-md border border-teal-200 bg-teal-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-teal-800">
+                        <span className="inline-block rounded-md border border-teal-200 bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-800">
                           {c.tag}
                         </span>
-                        <h3 className="mt-3 break-words text-xl font-bold text-navy transition-colors group-hover:text-teal-700 sm:text-2xl">{c.name}</h3>
+                        <h3
+                          id={titleId}
+                          className="mt-3 break-words text-xl font-bold text-navy transition-colors group-hover:text-teal-700 sm:text-2xl"
+                        >
+                          {c.name}
+                          <span className="sr-only"> website (opens in a new tab)</span>
+                        </h3>
                         <p className="mt-3 text-sm leading-relaxed text-muted">{c.text}</p>
                       </div>
 
-                      <span className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-teal-700/20 transition-all duration-300 group-hover:bg-teal-800">
+                      <span className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-teal-700 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-teal-700/20 transition-colors duration-300 group-hover:bg-teal-800 sm:mt-8">
                         Visit website
-                        <span className="sr-only"> (opens in a new tab)</span>
-                        <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        <ArrowUpRight
+                          size={18}
+                          aria-hidden
+                          className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none"
+                        />
                       </span>
                     </div>
                   </a>
