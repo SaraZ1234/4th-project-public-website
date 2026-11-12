@@ -14,17 +14,15 @@ export const site = {
   address: "101 Queen Street, West Toronto, ON M5H 2NI, Canada",
 };
 
+
 export const nav = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Our Businesses", href: "/businesses" },
-  { label: "Import & Export", href: "/import-export" },
-  { label: "Products / E-Commerce", href: "/products" },
-  { label: "Marketplace", href: "/marketplace" },
-  { label: "Printing Services", href: "/printing" },
   { label: "Countries / Markets", href: "/countries" },
   { label: "Contact Us", href: "/contact" },
 ];
+
 
 export const businesses = [
   {
