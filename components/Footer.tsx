@@ -108,7 +108,7 @@ export default function Footer() {
         </nav>
 
         {/* Support */}
-        <div className="text-sm" {...reveal(3)}>
+        <div {...reveal(3)} className="text-sm">
           <p className={h}>Support and contact</p>
           <address className="space-y-2 not-italic leading-relaxed">
             <p>

@@ -77,7 +77,7 @@ export default function HomeClient() {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Button href="/businesses" className="shadow-lg shadow-teal/10 hover:shadow-teal/20 transition-all">
+                <Button href="/businesses">
                   Explore Our Businesses
                 </Button>
                 <Button href={`${APP_URL}/shop`} variant="secondary">
@@ -248,7 +248,7 @@ export default function HomeClient() {
                 </button>
 
                 <div className="p-5 space-y-2.5">
-                  <OwnershipBadge owner={p.owner} />
+                  <OwnershipBadge owner={p.owner === "Sold by Fast Group" ? "org" : "seller"} />
                   <h3 className="text-base font-bold text-navy line-clamp-1">{p.name}</h3>
                   <p className="text-xs text-muted line-clamp-2 leading-relaxed">{p.desc}</p>
                   <p className="text-[11px] font-medium text-muted/80 pt-1">
@@ -258,8 +258,8 @@ export default function HomeClient() {
               </div>
 
               <div className="flex items-center justify-between border-t border-line px-5 py-3.5 bg-surface/35">
-                <button 
-                  onClick={() => setActiveProduct(p)} 
+                <button
+                  onClick={() => setActiveProduct(p)}
                   className="text-xs font-semibold text-teal transition hover:text-navy"
                 >
                   Quick view
@@ -306,7 +306,7 @@ export default function HomeClient() {
               <Package size={48} strokeWidth={1} />
             </div>
 
-            <OwnershipBadge owner={activeProduct.owner} />
+            <OwnershipBadge owner={activeProduct.owner === "Sold by Fast Group" ? "org" : "seller"} />
             <h2 className="mt-3 text-xl font-bold text-navy">{activeProduct.name}</h2>
             <p className="mt-2 text-sm text-muted leading-relaxed">{activeProduct.desc}</p>
 
@@ -316,7 +316,7 @@ export default function HomeClient() {
             </div>
 
             <div className="mt-6">
-              <Button href={`${APP_URL}/shop/${activeProduct.slug}`} className="w-full justify-center">
+              <Button href={`${APP_URL}/shop/${activeProduct.slug}`}>
                 View Product Details
               </Button>
             </div>
@@ -429,7 +429,7 @@ export default function HomeClient() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Button href={`${APP_URL}/printing/enquiry`} className="shadow-lg">
+              <Button href={`${APP_URL}/printing/enquiry`}>
                 Submit Printing Enquiry
                 <ArrowRight size={16} className="ml-2" />
               </Button>
@@ -540,9 +540,8 @@ export default function HomeClient() {
             return (
               <article
                 key={f.q}
-                className={`overflow-hidden rounded-2xl border bg-white transition-all duration-300 ${
-                  isOpen ? "border-teal shadow-md" : "border-line"
-                }`}
+                className={`overflow-hidden rounded-2xl border bg-white transition-all duration-300 ${isOpen ? "border-teal shadow-md" : "border-line"
+                  }`}
               >
                 <button
                   onClick={() => setActiveFaq(isOpen ? null : i)}

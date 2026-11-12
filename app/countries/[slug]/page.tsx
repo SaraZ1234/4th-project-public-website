@@ -4,17 +4,17 @@ import { site, APP_URL, countries } from "@/lib/content";
 import { Globe2, ArrowRight, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: { slug: string };
-}
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
 export function generateStaticParams() {
   return countries.filter((c) => c.group !== "home").map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const country = countries.find((c) => c.slug === params.slug);
-  if (!country) return {};
+  const { slug } = await params;
+  const country = countries.find((c) => c.slug === slug); if (!country) return {};
   return {
     title: `Our Business in ${country.name} | ${site.name}`,
     description: `Explore our trade operations, import and export corridors, and partner networks in ${country.name}.`,
@@ -22,8 +22,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function InternationalCountryPage({ params }: PageProps) {
-  const country = countries.find((c) => c.slug === params.slug);
+export default async function InternationalCountryPage({ params }: PageProps) {
+  const { slug } = await params;
+  const country = countries.find((c) => c.slug === slug);
   if (!country || country.group === "home") {
     notFound();
   }

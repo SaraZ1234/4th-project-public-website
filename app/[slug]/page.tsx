@@ -84,11 +84,11 @@ export default async function Page({
             <h2>Featured products</h2>
             <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {products
-                .filter((x) => p.slug === "products" || x.owner === "seller")
+                .filter((x) => p.slug === "products" || x.owner === "Marketplace Seller")
                 .map((x) => (
                   <article key={x.slug} className="space-y-2 rounded-xl border border-line p-4">
                     <div className="aspect-square bg-surface" />
-                    <OwnershipBadge owner={x.owner} />
+                    <OwnershipBadge owner={x.owner === "Sold by Fast Group" ? "org" : "seller"} />
                     <h3 className="text-lg">{x.name}</h3>
                     <Link href={`${APP_URL}/shop/${x.slug}`} className="font-semibold text-teal hover:underline">
                       View details
