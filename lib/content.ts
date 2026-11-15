@@ -14,7 +14,6 @@ export const site = {
   address: "101 Queen Street, West Toronto, ON M5H 2NI, Canada",
 };
 
-
 export const nav = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
@@ -22,7 +21,6 @@ export const nav = [
   { label: "Countries / Markets", href: "/countries" },
   { label: "Contact Us", href: "/contact" },
 ];
-
 
 export const businesses = [
   {
@@ -74,8 +72,7 @@ export type Product = {
 };
 
 // True for products the organization sells itself (not marketplace sellers).
-export const isOwnProduct = (p: Product) =>
-  p.owner === "Sold by Fast Group";
+export const isOwnProduct = (p: Product) => p.owner === "Sold by Fast Group";
 
 // PLACEHOLDER: sample products. Replace with real products, descriptions and images from the CMS.
 export const products: Product[] = [
@@ -118,6 +115,8 @@ export type Country = {
   name: string;
   group: "home" | "international";
   text: string;
+  imports?: string[]; // goods we import from this country (client must confirm)
+  exports?: string[]; // goods we export to this country (client must confirm)
 };
 
 // PLACEHOLDER: the client must confirm which countries to show and what is
@@ -254,6 +253,7 @@ export type Announcement = {
   date: string;
   excerpt: string;
   body: string;
+  country?: string; // country slug, for market announcements
 };
 
 // Add only real, approved announcements. Pages that show announcements must
